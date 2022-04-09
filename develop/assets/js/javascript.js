@@ -113,8 +113,9 @@ $(document).ready(function() {
 
             // modal
             function moreInfoModal(response, id, watchModeId) {
-
-                watchFetch(watchModeId)
+console.log(response,id,watchModeId);
+console.log(response.items[id].id)
+                watchFetch(response.items[id].id)
                 let rating = Math.floor(response.items[id].imDbRating);
                 console.log(watchmodeData.trailer)
 
@@ -149,6 +150,19 @@ $(document).ready(function() {
     } // end of modal()
 
     function displayMostPopular(response, start, end) {
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         if ($('.show-list-header').length) {
             $('.p-title').empty()
@@ -248,7 +262,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 // if successful
-                // console.log(response)
+                 console.log(response)
                     searchResult(response)
             }
         })
@@ -328,6 +342,8 @@ $(document).ready(function() {
             },
             success: function(response) {
                 // if successful
+console.log(response);
+
                 watchmodeData.id = response.id
                 watchmodeData.title = response.title
                   watchmodeData.plot_overiew = response.plot_overiew
