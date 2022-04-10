@@ -31,7 +31,7 @@
    *Launch the index.html file in your browser to open the application
  
  ## 🎞️🎞️Application🎞️🎞️
-<a href="https://sophoanmeas.github.io/Movies-Tv-Shows/index.html" target="_blank"><h2>➡️Movies-Tv-Shows</a>
+<a href="https://sophoanmeas.github.io/movies-tv-shows/index.html" target="_blank"><h2>➡️Movies-Tv-Shows</a>
   
 
     
