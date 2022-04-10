@@ -10,30 +10,18 @@ let index;
 let rating;
 let stream;
 let showLink;
+
 let searchHistory = {
     title: [],
 };
-
 
 const min = 0;
 const max = 250;
 
 $(document).ready(function() {
 
-            /*
-             * Where to watch
-             */
+            // where to watch 
             function watchFetch(res) {
-
-                // let type = '';
-
-                // console.log(category)
-                // if (category === "Top250Movies") {
-                //     type = 'movie';
-                // } else {
-                //     type = 'tv';
-                // }
-
                 const apiUrl = `https://api.themoviedb.org/3/movie/${imdId}/watch/providers?api_key=${apiKeys.watchmode}`;
 
                 $.ajax({
@@ -190,8 +178,6 @@ $(document).ready(function() {
             }
         });
     } // end of modal()
-
-
 
     function displayMostPopular(res, start, end) {
         if ($(".show-list-header").length) {
@@ -467,7 +453,6 @@ function displayMoreSearchResult(response){
             category = type.value;    
             titleName = $(".input").val();
 
-
             if (!titleName){
                 return
             }
@@ -475,7 +460,7 @@ function displayMoreSearchResult(response){
             if (category == 'Search by Type:'){
                 return
             }
-            
+
             if (category === "SearchMovie") {
                 menuItem = "Movies";
             }
@@ -512,7 +497,6 @@ function displayMoreSearchResult(response){
             }
             return;
         }
-    
 
     onLoad();
 });
