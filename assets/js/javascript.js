@@ -304,7 +304,10 @@ $(document).ready(function() {
             success: function(response) {
                 // if successful
                 // console.log(response)
-                searchResult(response);
+                if (!response){
+                    return;
+                }
+                searchResult(response)
             },
         });
     } // end of search()
@@ -316,15 +319,15 @@ $(document).ready(function() {
         if ($(".show-list-header").length) {
             $(".p-title").empty();
         }
-
+        // console.log(response)
         var length = response.results.length;
 
         $(".p-title").append(`${menuItem}`);
         $(".p-title").append(`<div class="column show-list"></div>`);
         for (let i = 0; i < length; i++) {
             $(".show-list").append(`
-    <div class="column has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
-     <img class="poster" src="${response.results[i].image}" data-value="${i}"width="120px" height="120px">
+    <div class="column is-3 has-text-dark has-background-light show-posters mt-3 mb-3 is-size-5 is-inline-block">
+     <img class="poster" src="${response.results[i].image}" data-id="${response.results[i].id}" data-value="${i}"width="120px" height="120px">
      <div class="text">
      <p>${response.results[i].title}</p>
      <p>${response.results[i].description}</p>
@@ -335,28 +338,65 @@ $(document).ready(function() {
 
         $(".poster").on("click", function(event) {
             event.stopPropagation();
+            imdId = event.target.dataset.id;
             let id = event.target.dataset.value;
 
-            $(".modal").addClass("is-active");
-            $(".box-info").append(`
-            <div class="more-info">
-            <div class="modal-items">
-            <img src="${response.results[id].image}" has-text-centered width="280px" height="280px">
-            <p>Title: ${response.results[id].title}</p>
-            <p>Description: ${response.results[id].description}</p>
-            `);
+            console.log(imdId)
+            searchMoreInfo(imdId)
         });
 
-        // close the modal
-        $(".modal").on("click", function(event) {
-            if (!$(event.target).closest(".modal-content, modal").length) {
-                $("body").find(".modal").removeClass("is-active");
-                $(".box-info").html("");
-            }
-        });
+      
     } // end of poster event
 
 
+// GET MORE SEARCH INFO
+function searchMoreInfo(imdId) {
+    // console.log(imdId)
+    const apiUrl = `https://imdb-api.com/en/API/Title/${apiKeys.imdb}/${imdId}/FullActor,FullCast,Posters,Trailer,Ratings,Wikipedia,`;
+
+    $.ajax({
+        method: "GET",
+        url: apiUrl,
+        dataType: "json",
+        error: function(error) {
+            console.log(error);
+        },
+        success: function(response) {
+            // if successful
+            // console.log(response)
+            if (!response){
+                return;
+            }
+            displayMoreSearchResult(response)
+        },
+    });
+} // end of search()
+
+
+function displayMoreSearchResult(response){
+    
+    // console.log(response)
+    $(".modal").addClass("is-active");
+    $(".box-info").append(`
+    <div class="more-info">
+    <div class="modal-items">
+    <img src="${response.image}" has-text-centered width="280px" height="280px">
+    <p><strong>Title:</strong> ${response.fullTitle}</p>
+    <p><strong>Plot:</strong> ${response.plot}</p>
+    <p><strong>Genres:</strong> ${response.genres}
+    <p><strong>Year:</strong> ${response.year}
+    <p><strong>Release Date:</strong> ${response.releaseDate}
+   <p><strong>Rating:</strong> ${response.imDbRating}
+    `);
+      // close the modal
+      $(".modal").on("click", function(event) {
+        if (!$(event.target).closest(".modal-content, modal").length) {
+            $("body").find(".modal").removeClass("is-active");
+            $(".box-info").html("");
+        }
+    });
+
+}
 
     // event listeners declaration
     $(".tv-show-btn").on("click", function(event) {
@@ -395,9 +435,14 @@ $(document).ready(function() {
     });
 
     $("#search-btn").on("click", function() {
+
         let type = document.getElementById("search-type");
-       category = type.value;
+        category = type.value;    
         title = $(".input").val();
+
+        if (!title){
+            return;
+        }
 
         if (category === "SearchMovie") {
             menuItem = "Movies";
@@ -406,33 +451,31 @@ $(document).ready(function() {
         if (category === "SearchSeries") {
             menuItem = "TV Series";
         }
-        search(category, title);
-        addHistory(title)
+
+        if (category === 'SearchMovies' || 'SearchSeroes') {
+        
+            search(category, title);
+            addHistory(title)
+        }
+
+      return
     });
 
         // search history input
-        $("#title").change(function() {
+        $("#title").change("click",function() {
             let type = document.getElementById("search-type");
+            category = type.value;    
+            titleName = $(".input").val();
 
-            // if ($('#search-type' !== "SearchMovie" || "SearchSeries")){
-            //     $('.modal').addClass('is-active')
-            //     $('.box-info').append(`<p>Please seletect a "Search Type"</p>`)
-           
-            //     $('.modal').on('click', function(event) {
-            //         if (!$(event.target).closest('.modal-content, modal').length) {
-            //             $('body').find('.modal').removeClass('is-active');
-            //             $('.box-info').html('')
-            //         }
-            //     });
-            //     return
-            // }
-          if ($('search-type').length){
-              return
-          }
-            category = type.value;
 
-            let searchHistoryTitle = $(this).val();
-          
+            if (!titleName){
+                return
+            }
+
+            if (category == 'Search by Type:'){
+                return
+            }
+            
             if (category === "SearchMovie") {
                 menuItem = "Movies";
             }
@@ -440,7 +483,11 @@ $(document).ready(function() {
             if (category === "SearchSeries") {
                 menuItem = "TV Series";
             }
-            search(category, searchHistoryTitle);
+            
+        if (category === 'SearchMovies' || 'SearchSeries') {
+            search(category, titleName);
+        }
+         return
     
         });
 
@@ -449,7 +496,6 @@ $(document).ready(function() {
                 searchHistory = JSON.parse(localStorage.getItem("searchTitle"));
     
                 $.each(searchHistory.title, function(index) {
-                    console.log(searchHistory.title[index]);
                     $("#history").append(`
                     <option value="${searchHistory.title[index]}"</option>
                     `);
