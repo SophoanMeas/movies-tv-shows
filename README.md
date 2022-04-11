@@ -1,6 +1,6 @@
 <h1 align="center">Group Project #1
   
-# Movies and TV 2 Watch 🎥📺🍿🍿🍿🍿
+# Movies and TV 2 Watch 🎥📺🍿🍿
   
  Movies and TV 2 Watch is an app that shows you what movies/tv shows you can search for and watch.
   It searches for movies and tv shows by:
@@ -48,6 +48,7 @@
   ## ✳️Screenshot✳️
     
 
+![image](https://user-images.githubusercontent.com/27268374/162653784-f52f320f-b5a5-4ee6-82b8-766c1f536e80.png)
 
     
 
