@@ -4,7 +4,7 @@
   
  Movies and TV 2 Watch is an app that shows you what movies/tv shows you can search for and watch. You also have the option to click on the drop-down nagivation to searches for movies and tv shows by:
   <ul>
-  <li>Title</li>
+  <li>⭐Title</li>
   <li>⭐Top 10 Movies🎥</li>
   <li>⭐Most Popular Movies 🎥 </li>
   <li>⭐Top 10 TV Shows 📺</li>
