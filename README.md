@@ -2,17 +2,16 @@
   
 # Movies and TV 2 Watch 🎥📺🍿🍿
   
- Movies and TV 2 Watch is an app that shows you what movies/tv shows you can search for and watch.
-  It searches for movies and tv shows by:
+ Movies and TV 2 Watch is an app that shows you what movies/tv shows you can search for and watch. You also have the option to click on the drop-down nagivation to searches for movies and tv shows by:
   <ul>
   <li>Title</li>
-  <li>Top 10 Movies🎥</li>
-  <li> Most Popular Movies 🎥 </li>
-  <li>Top 10 TV Shows 📺</li>
-  <li>Most Popular TV Shows 📺</li>
-  <li>Top 10 TV Shows 📺</li>
+  <li>⭐Top 10 Movies🎥</li>
+  <li>⭐Most Popular Movies 🎥 </li>
+  <li>⭐Top 10 TV Shows 📺</li>
+  <li>⭐Most Popular TV Shows 📺</li>
+  <li>⭐Top 10 TV Shows 📺</li>
   
-   ## 🎞️🎞️How It Works🎞️🎞️
+## 🎞️🎞️How It Works🎞️🎞️
 
 <li> Rest API Http request protocol</li>
 <li> DOM manipulation to render the data for the user</li>
@@ -31,9 +30,18 @@
    *Launch the index.html file in your browser to open the application
  
  ## 🎞️🎞️Application🎞️🎞️
+    
 <a href="https://sophoanmeas.github.io/movies-tv-shows/index.html" target="_blank"><h2>➡️Movies-Tv-Shows</a>
-  
 
+ ## ✴️Technology Used✴️💻🖲️📱
+   <li><strong>CSS</li>
+  <li>Html</li>
+  <li>Jquery</li>
+  <li>JavaScript</li>
+  <li>Bulma (css framework)</li>
+      <li>APIs ( <a href="https://imdb-api.com" target="_blank">imBd</a>, <a href="https://www.themoviedb.org" target="_blank">themoviedb</a> ) </li>
+  <li>Visual Code (developer tool)</li>
+  <li>Chrome (developer tool)</strong></li>
     
  ## ✳️Functions/Features✳️
   
